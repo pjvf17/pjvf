@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>whoop it&#39;s an index on pjvf.me</title>
+    <link>https://pjvf.me/</link>
+    <description>Recent content in whoop it&#39;s an index on pjvf.me</description>
+    <generator>Hugo -- 0.145.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 13 Mar 2025 04:20:17 +0000</lastBuildDate>
+    <atom:link href="https://pjvf.me/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Eep</title>
+      <link>https://pjvf.me/posts/eep/</link>
+      <pubDate>Thu, 13 Mar 2025 04:20:17 +0000</pubDate>
+      <guid>https://pjvf.me/posts/eep/</guid>
+      <description>&lt;h1 id=&#34;hello&#34;&gt;hello!&lt;/h1&gt;
+&lt;p&gt;hi there hello to the people I&amp;rsquo;ve sent this to already, did you know you&amp;rsquo;re lovely?&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>First Cryptic</title>
+      <link>https://pjvf.me/posts/first-cryptic/</link>
+      <pubDate>Tue, 03 Sep 2024 22:16:32 +0000</pubDate>
+      <guid>https://pjvf.me/posts/first-cryptic/</guid>
+      <description>&lt;style&gt;
+   /* Custom styles just for this post */
+   :root{
+      --main-width: 70vw
+   }
+ &lt;/style&gt;
+
+&lt;p&gt;I wrote this in about a week back in September. For being my first ever crossword and done so quickly, I think it came out pretty well.&lt;/p&gt;
+
+
+&lt;iframe style=&#34;height: 90vh; width: 100%;&#34; src=&#34;https://crosshare.org/embed/g2IuTNZD3XHLlBkmAFE4/gW3bEDGirYbJGssmZAv4QalQxvx1&#34; frameborder=&#34;0&#34; allowfullscreen=&#34;true&#34; allowtransparency=&#34;true&#34; allow=&#34;clipboard-write *&#34;&gt;&lt;/iframe&gt;</description>
+    </item>
+  </channel>
+</rss>

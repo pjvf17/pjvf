@@ -1,0 +1,4 @@
+baseURL = 'https://pjvf.me/'
+languageCode = 'en-us'
+title = 'pjvf.me'
+theme = 'PaperMod'

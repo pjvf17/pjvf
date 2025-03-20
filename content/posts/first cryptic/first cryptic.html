@@ -1,0 +1,20 @@
+---
+title: "First Cryptic"
+date: 2025-03-14
+draft: true
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }}</title>
+    {{ with .Resources.GetMatch "*.css" }}
+      <style>{{ .Content | safeCSS }}</style>
+    {{ end }}
+  </head>
+  <body>
+    <h1>{{ .Title }}</h1>
+    <p>Your post content goes here...</p>
+  </body>
+</html>
