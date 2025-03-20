@@ -1,0 +1,13 @@
+baseURL = 'https://pjvf.me/'
+languageCode = 'en-us'
+title = 'pjvf.me'
+author = "Pascal von Fintel"
+theme = 'hugo-bearblog'
+copyright = "Copyright © 2025, Pascal von Fintel."
+enableRobotsTXT = true
+[permalinks]
+  blog = "/:slug/"
+  tags = "/blog/:slug"
+[params]
+  hideMadeWithLine = true
+  #dateFormat = "2006-01-02"
