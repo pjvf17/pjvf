@@ -18,7 +18,7 @@ input.crossword-cell {
   }
 }
 
-::selection {
+input.crossword-cell::selection {
   background: transparent; 
 }
 
@@ -26,8 +26,10 @@ input.crossword-cell {
   display: flex;
   align-items: center;
   justify-content: center;
+  caret-color: transparent;
 }
 
+/* moo */
 #clue-a-day {
    display: flex;
   flex-direction: column;      /* Stack items vertically */

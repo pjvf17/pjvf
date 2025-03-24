@@ -85,11 +85,15 @@ var generateInteractiveCrossword = (answerLen, {
         const curCell = document.getElementById(
           `cell-${i}`
         );
-        curCell.value = "";
-        const prevCell = document.getElementById(
-          `cell-${i - 1}`
-        );
-        prevCell?.focus();
+        if (curCell.value == "") {
+          const prevCell = document.getElementById(
+            `cell-${i - 1}`
+          );
+          prevCell?.focus();
+          prevCell.value = "";
+        } else {
+          curCell.value = "";
+        }
       }
     });
     foreign.appendChild(input);
