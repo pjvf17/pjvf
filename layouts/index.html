@@ -28,9 +28,9 @@
     {{- partial "header.html" . -}}
   </header>
   <main>
-    {{ .Content }}
-    {{- block "main" . }}
-    <content>
+        {{ .Content }}
+        {{- block "main" . }}
+        <content>
       <ul class="blog-posts">
         <!-- replace 'blog' with any folder in /content/ -->
         {{ range ( where .Site.RegularPages "Type" "blog" | first 3 ) }}

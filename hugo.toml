@@ -2,7 +2,7 @@ baseURL = 'https://pjvf.me/'
 languageCode = 'en-us'
 title = 'pjvf.me'
 author = "Pascal von Fintel"
-theme = 'hugo-bearblog'
+theme = ["hugo-embed-pdf-shortcode", "hugo-bearblog"]
 copyright = "Copyright © 2025, Pascal von Fintel."
 enableRobotsTXT = true
 [permalinks]

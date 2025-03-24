@@ -1,14 +1,21 @@
 
-{{ define "main" }}
+ {{ define "main" }}
 <content>
   {{ if .Data.Singular }}
-  <h3 style="margin-bottom:0">Filtering for "{{ .Title }}"</h3>
+  <h3 style="margin-bottom:0">Filtering for "{{ .Data.Term }}"</h3>
   <small>
     <a href="{{ "blog" | relURL }}">Remove filter</a>
   </small>
   {{ end }}
   <ul class="blog-posts">
-    {{ range .Pages }}
+    {{ $posts := slice }}
+    {{ if .Data.Singular }}
+      {{ $posts = where .Site.RegularPages "Type" "ne" "draft" }}
+      {{ $posts = where $posts ".Params.tags" "intersect" (slice .Data.Term)}}
+    {{ else }}
+      {{ $posts = where .Site.RegularPages "Type" "ne" "draft" }}
+    {{ end }}
+    {{ range $posts }}
     <li>
       <span>
         <i>
@@ -30,7 +37,7 @@
     <small>
       <div>
         {{ range .Site.Taxonomies.tags }}
-        <a href="{{ .Page.Permalink }}">#{{ .Page.Title }}</a>&nbsp;
+        <a href="{{ .Page.Permalink }}">#{{ lower .Page.Title }}</a>&nbsp;
         {{ end }}
       </div>
     </small>
