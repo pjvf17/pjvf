@@ -1,16 +1,21 @@
 // src/index.ts
-async function digestMessage(message) {
-  const msgUint8 = new TextEncoder().encode(message);
-  const hashBuffer = await window.crypto.subtle.digest("SHA-256", msgUint8);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
-  return hashHex;
+function fnv32a(str) {
+  var FNV1_32A_INIT = 2166136261;
+  var hval = FNV1_32A_INIT;
+  for (var i = 0; i < str.length; ++i) {
+    hval ^= str.charCodeAt(i);
+    hval += (hval << 1) + (hval << 4) + (hval << 7) + (hval << 8) + (hval << 24);
+  }
+  return hval >>> 0;
 }
 var generateInteractiveCrossword = (answerLen, {
   cellSize = 50,
   cellColor = "#ffffff",
   focusColor = "#ffcc00"
 } = {}) => {
+  const rootStyles = getComputedStyle(document.documentElement);
+  if (rootStyles.getPropertyValue("--cellSize"))
+    cellSize = parseInt(rootStyles.getPropertyValue("--cellSize").trim());
   const svgNS = "http://www.w3.org/2000/svg";
   const xhtmlNS = "http://www.w3.org/1999/xhtml";
   const width = answerLen * cellSize;
@@ -75,25 +80,33 @@ var generateInteractiveCrossword = (answerLen, {
           `cell-${i - 1}`
         );
         prevCell?.focus();
+      } else if (e.key === "Backspace" && i > 0) {
+        e.preventDefault();
+        const curCell = document.getElementById(
+          `cell-${i}`
+        );
+        curCell.value = "";
+        const prevCell = document.getElementById(
+          `cell-${i - 1}`
+        );
+        prevCell?.focus();
       }
     });
     foreign.appendChild(input);
     svg.appendChild(foreign);
   }
-  const getUserInputHash = async () => {
+  const getUserInputHash = () => {
     let userAnswer = "";
     for (let i = 0; i < answerLen; i++) {
       const cell = document.getElementById(`cell-${i}`);
       userAnswer += (cell?.value || "").toUpperCase();
     }
-    return await digestMessage(userAnswer);
+    return fnv32a(userAnswer);
   };
   return { svg, getUserInputHash };
 };
-var compareHashes = async (getAnswerHash, getUserInputHash) => {
+var compareHashes = (answerHash, userInputHash) => {
   const resultDiv = document.getElementById("result");
-  const userInputHash = await getUserInputHash();
-  const answerHash = await getAnswerHash();
   if (userInputHash === answerHash) {
     resultDiv.textContent = "\u2705 Correct!";
     resultDiv.style.color = "green";

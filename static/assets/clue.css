@@ -8,6 +8,16 @@ input.crossword-cell {
   outline: none;
   background: transparent;
 }
+
+@media (max-width: 768px) {
+  :root {
+      --cellSize: 30; /* Increase the width for smaller screens */
+  }
+  input.crossword-cell {
+    font-size: 15px;
+  }
+}
+
 ::selection {
   background: transparent; 
 }

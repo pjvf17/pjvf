@@ -1,5 +1,5 @@
 {{ define "main" }}
-  {{ $answerHash := sha256 .Params.answer }}
+  {{ $answerHash := hash.FNV32a .Params.answer }}
   {{ $answerLen := len .Params.answer}}
   {{ $clue := .Params.clue}}
   {{ partial "clue.html" (dict

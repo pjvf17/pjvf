@@ -58,7 +58,7 @@
 
         {{ $latestClue := ( where .Site.RegularPages "Type" "clue" | first 1 ) }}
         {{ with index $latestClue 0 }}
-            {{ $answerHash := sha256 .Params.answer }}
+            {{ $answerHash := hash.FNV32a .Params.answer }}
             {{ $answerLen := len .Params.answer}}
             {{ $clue := .Params.clue}}
             {{ partial "clue.html" (dict
