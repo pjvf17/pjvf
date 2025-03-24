@@ -1,0 +1,34 @@
+input.crossword-cell {
+  width: 100%;
+  height: 100%;
+  font-size: 24px;
+  font-family: sans-serif;
+  text-align: center;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+::selection {
+  background: transparent; 
+}
+
+#crossword-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#clue-a-day {
+   display: flex;
+  flex-direction: column;      /* Stack items vertically */
+  justify-content: center;     /* Center vertically */
+  align-items: center;         /* Center horizontally */
+  /* height: 100vh;               Take full viewport height */
+}
+
+.clue-check-container {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;      /* Stack items vertically */
+}

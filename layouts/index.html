@@ -28,12 +28,48 @@
     {{- partial "header.html" . -}}
   </header>
   <main>
+    <br/>
         {{ .Content }}
         {{- block "main" . }}
         <content>
       <ul class="blog-posts">
         <!-- replace 'blog' with any folder in /content/ -->
         {{ range ( where .Site.RegularPages "Type" "blog" | first 3 ) }}
+        <li>
+          <span>
+            <i>
+              <time datetime='{{ .Date.Format "2006-01-02" }}'>
+                {{ .Date.Format (default "02 Jan, 2006" .Site.Params.dateFormat) }}
+              </time>
+            </i>
+          </span>
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </li>
+        {{ else }}
+        <li>
+          No posts yet
+        </li>
+        {{ end }}
+      </ul>
+      <br/>
+      <ul class="blog-posts">
+        <h2>Clue A Day project:</h2>
+        <p>I'll make a post about this project soon but here's a first clue!</p>
+
+        {{ $latestClue := ( where .Site.RegularPages "Type" "clue" | first 1 ) }}
+        {{ with index $latestClue 0 }}
+            {{ $answerHash := sha256 .Params.answer }}
+            {{ $answerLen := len .Params.answer}}
+            {{ $clue := .Params.clue}}
+            {{ partial "clue.html" (dict
+            "answerLen" $answerLen
+            "answerHash" $answerHash
+            "clue" $clue
+          )  }}
+        {{ end }}
+
+        <!-- replace 'blog' with any folder in /content/ -->
+        {{ range ( where .Site.RegularPages "Type" "clue" | first 3 ) }}
         <li>
           <span>
             <i>

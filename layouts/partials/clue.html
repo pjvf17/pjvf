@@ -1,0 +1,29 @@
+
+
+<div id="clue-a-day">
+  {{ .clue }}
+  <div id="crossword-container"></div>
+  <div class="clue-check-container" style="margin-top: 10px">
+    <button id="submit-button">Submit</button>
+    <div id="result" style="margin-top: 8px; font-size: 18px"></div>
+  </div>
+</div>
+<script type="module" src="/assets/clue.js"></script>
+<script type="module">
+  import { generateInteractiveCrossword, compareHashes } from '/assets/clue.js';
+  const container = document.getElementById("crossword-container");
+  const crossword = generateInteractiveCrossword({{ .answerLen }}, {
+      cellColor: "#516770",
+      focusColor: "#695170",
+  });
+  console.log("Crossword object:", crossword.getUserInputHash);
+  container?.appendChild(crossword.svg);
+
+  const submitButton = document.getElementById("submit-button");
+
+  submitButton?.addEventListener("click", () =>
+    compareHashes(() => "{{ .answerHash }}", crossword.getUserInputHash)
+  );
+</script>
+<link rel="stylesheet" href="/assets/clue.css" />
+

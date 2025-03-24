@@ -1,0 +1,10 @@
+{{ define "main" }}
+  {{ $answerHash := sha256 .Params.answer }}
+  {{ $answerLen := len .Params.answer}}
+  {{ $clue := .Params.clue}}
+  {{ partial "clue.html" (dict
+  "answerLen" $answerLen
+  "answerHash" $answerHash
+  "clue" $clue
+)  }}
+{{ end }}
