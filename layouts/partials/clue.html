@@ -1,5 +1,3 @@
-
-
 <div id="clue-a-day">
   <p>{{ .clue }}</p>
   <div id="crossword-container"></div>
@@ -9,21 +7,18 @@
   </div>
 </div>
 <link rel="stylesheet" href="/assets/clue.css" />
-<script type="module" src="/assets/clue.js"></script>
 <script type="module">
-  import { generateInteractiveCrossword, compareHashes } from '/assets/clue.js';
+  import { generateInteractiveCrossword, compareHashes } from '/assets/clue.min.js';
   const container = document.getElementById("crossword-container");
   const crossword = generateInteractiveCrossword({{ .answerLen }}, {
       cellColor: "#516770",
       focusColor: "#695170",
   });
-  // console.log("Crossword object:", crossword.getUserInputHash);
-  // container?.appendChild(crossword.container);
+  const getAnswerHash = () => {{.answerHash}}
 
   const submitButton = document.getElementById("submit-button");
 
   submitButton?.addEventListener("click", () =>
-    compareHashes({{ .answerHash }}, crossword.getUserInputHash())
+    compareHashes(getAnswerHash, crossword.getUserInputHash)
   );
 </script>
-

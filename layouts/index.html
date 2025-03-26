@@ -54,7 +54,7 @@
       <br/>
       <ul class="blog-posts">
         <h2>Clue A Day project:</h2>
-        <p>I'll make a post about this project soon but here's a first clue!</p>
+        <p>I'll make a post about this project soon but here's today's clue!</p>
 
         {{ $latestClue := ( where .Site.RegularPages "Type" "clue" | first 1 ) }}
         {{ with index $latestClue 0 }}

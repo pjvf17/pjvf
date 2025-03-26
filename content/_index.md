@@ -1,0 +1,10 @@
++++
+title = "pjvf.me"
+layout = "index"
++++
+
+
+Hiii it's a homepage that has my most recent 3 blog posts it's kinda wild.
+
+Click a post to leave a comment :)
+
