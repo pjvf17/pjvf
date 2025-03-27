@@ -43,7 +43,7 @@
               </time>
             </i>
           </span>
-          <a href="{{ .Permalink }}">{{ .Title }}</a>
+          <a href="{{ .Permalink }}" title="{{ .Description }}">{{ .Title }}</a>
         </li>
         {{ else }}
         <li>
@@ -68,8 +68,10 @@
           )  }}
         {{ end }}
 
+        <p>Previous puzzles:</p>
+
         <!-- replace 'blog' with any folder in /content/ -->
-        {{ range ( where .Site.RegularPages "Type" "clue" | first 3 ) }}
+        {{ range first 10 (after 1 (where .Site.RegularPages "Type" "clue")) }}
         <li>
           <span>
             <i>
@@ -78,7 +80,8 @@
               </time>
             </i>
           </span>
-          <a href="{{ .Permalink }}">{{ .Title }}</a>
+          <a href="{{ .Permalink }}" title="{{ .Params.clue }}">{{ .Title }}</a>
+          
         </li>
         {{ else }}
         <li>
@@ -86,6 +89,9 @@
         </li>
         {{ end }}
       </ul>
+      {{ with .Site.GetPage "/blog/" }}
+      <a href="{{ "blog" | relURL }}/clue-a-day">All daily clues</a>
+      {{ end }}
     </content>
     {{- end }}
   </main>

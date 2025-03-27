@@ -3,8 +3,6 @@ title = "pjvf.me"
 layout = "index"
 +++
 
-
-Hiii it's a homepage that has my most recent 3 blog posts it's kinda wild.
+Hiii I'm gonna be posting a crosswords, contra dance choreography, random blog posts about meditation and buddhist practice, and probably some coding related things!
 
 Click a post to leave a comment :)
-
