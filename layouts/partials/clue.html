@@ -1,19 +1,48 @@
 <div id="clue-a-day">
   <p>{{ .clue }}</p>
   <div id="crossword-container"></div>
-  <div class="clue-check-container" style="margin-top: 10px">
-    <button id="submit-button">Submit</button>
-    <div id="result" style="margin-top: 8px; font-size: 18px"></div>
+  <div class="clue-button-container">
+    <div class="clue-check-container">
+      <button id="submit-button">Submit</button>
+      <div id="result"></div>
+    </div>
+    <div class="check-dropdown">
+      <button id="check-button" class="button">Check</button>
+      <div class="check-dropdown-menu">
+        <button id="check-letter-button" class="button">
+          Check Letter
+        </button>
+        <button id="check-word-button" class="button">Check Word</button>
+      </div>
+    </div>
+    <div class="clue-check-container">
+      <button id="reveal-button">Reveal Letter</button>
+    </div>
   </div>
 </div>
-<link rel="stylesheet" href="/assets/clue.css" />
+<!-- <link rel="stylesheet" href="/assets/clue.css" /> -->
+{{ with resources.Get "sass/clue.scss" }}
+  {{ $opts := dict
+    "enableSourceMap" (not hugo.IsProduction)
+    "outputStyle" (cond hugo.IsProduction "compressed" "expanded")
+    "targetPath" "css/clue.css"
+    "sourceMapIncludeSources" true
+    "transpiler" "dartsass"
+  }}
+  {{ with . | toCSS $opts }}
+    {{ if hugo.IsProduction }}
+      {{ with . | fingerprint }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+        {{ end }}
+        {{ else }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{ end }}
+  {{ end }}
+{{ end }}
 <script type="module">
   import { generateInteractiveCrossword, compareHashes } from '/assets/clue.min.js';
-  const container = document.getElementById("crossword-container");
-  const crossword = generateInteractiveCrossword({{ .answerLen }}, {
-      cellColor: "#516770",
-      focusColor: "#695170",
-  });
+  
+  const crossword = generateInteractiveCrossword({{ .answerLen }});
   const getAnswerHash = () => {{.answerHash}}
 
   const submitButton = document.getElementById("submit-button");
@@ -21,4 +50,22 @@
   submitButton?.addEventListener("click", () =>
     compareHashes(getAnswerHash, crossword.getUserInputHash)
   );
+
+  const revealButton = document.getElementById("reveal-button");
+
+  revealButton?.addEventListener("click", () =>
+    crossword.revealLetter({{.base64}})
+  );
+
+  const checkLetter = document.getElementById("check-letter-button")
+
+  checkLetter.addEventListener("click", () =>{
+    crossword.checkLetter({{.base64}})
+  })
+  
+  const checkWord = document.getElementById("check-word-button")
+  
+  checkWord.addEventListener("click", () =>{
+    crossword.checkWord({{.base64}})
+  })
 </script>

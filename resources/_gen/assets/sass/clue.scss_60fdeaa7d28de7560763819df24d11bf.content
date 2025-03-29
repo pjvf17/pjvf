@@ -14,7 +14,6 @@
   width: 100%;
   height: 100%;
   text-align: center;
-  
   /* scales the font "relative to font-size of the root element" */
   font-size: 2rem;
   border: none;
@@ -31,11 +30,11 @@
   background-color: #695170;
 }
 
-
 /* The below two mean that the border on the cell on the far right and far left matches the border throughout. */
 .crossword-cell:last-child {
   border-width: 2px 2px 2px 1px;
 }
+
 .crossword-cell:first-child {
   border-width: 2px 1px 2px 2px;
 }
@@ -73,10 +72,13 @@
 
 .clue-button-container {
   display: grid;
-  grid-template-columns: 1fr 1.3fr; /* two equal-width columns */
+  grid-template-columns: 1fr 1.3fr;
+  /* two equal-width columns */
   gap: 20px;
-  justify-items: center; /* center buttons horizontally in each grid cell */
-  align-items: start;    /* align vertically (or 'center' if you want them middle-aligned) */
+  justify-items: center;
+  /* center buttons horizontally in each grid cell */
+  align-items: start;
+  /* align vertically (or 'center' if you want them middle-aligned) */
 }
 
 #submit-button {
@@ -119,13 +121,14 @@
   transform: scale(0.98);
 }
 
-
 .revealed-letter {
-  background-color: #374a52;  
-  color: #bbb;              
+  background-color: #374a52;
+  color: #bbb;
   font-weight: normal;
 }
 
 .revealed-letter.active-cell {
-  background-color: #423346
+  background-color: #423346;
 }
+
+/*# sourceMappingURL=clue.css.map */

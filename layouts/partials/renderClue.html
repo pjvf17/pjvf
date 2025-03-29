@@ -1,0 +1,20 @@
+{{- $page := . -}}
+{{- $answerHash := hash.FNV32a $page.Params.answer -}}
+{{- $answerLen := len $page.Params.answer -}}
+{{- $clue := $page.Params.clue -}}
+{{- $base64 := encoding.Base64Encode .Params.answer -}}
+{{- partial "clue.html" (dict
+  "answerLen" $answerLen
+  "answerHash" $answerHash
+  "clue" $clue
+  "base64" $base64
+) -}}
+
+{{ range $key, $value := $page.Params.hints }}
+<details>
+  <summary>{{ $key }}</summary>
+  <div class="hint-content">
+    {{ $value | markdownify }}
+  </div>
+</details>
+{{ end }}

@@ -55,18 +55,15 @@
       <ul class="blog-posts">
         <h2>Clue A Day project:</h2>
         <p>I'll make a post about this project soon but here's today's clue!</p>
+        <p>Update 2025-03-28: now with the ability to reveal letters! *everyone cheers*</p>
+        <p>Update 2025-03-29: now with hints/explanations (in the dropdowns below the clue)</p>
+        <p>and checking letter/work ability :))</p>
 
         {{ $latestClue := ( where .Site.RegularPages "Type" "clue" | first 1 ) }}
         {{ with index $latestClue 0 }}
-            {{ $answerHash := hash.FNV32a .Params.answer }}
-            {{ $answerLen := len .Params.answer}}
-            {{ $clue := .Params.clue}}
-            {{ partial "clue.html" (dict
-            "answerLen" $answerLen
-            "answerHash" $answerHash
-            "clue" $clue
-          )  }}
+          {{ partial "renderClue.html" . }}
         {{ end }}
+
 
         <p>Previous puzzles:</p>
 

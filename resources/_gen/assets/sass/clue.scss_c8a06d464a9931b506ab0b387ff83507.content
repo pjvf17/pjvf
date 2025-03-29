@@ -14,7 +14,6 @@
   width: 100%;
   height: 100%;
   text-align: center;
-  
   /* scales the font "relative to font-size of the root element" */
   font-size: 2rem;
   border: none;
@@ -31,11 +30,11 @@
   background-color: #695170;
 }
 
-
 /* The below two mean that the border on the cell on the far right and far left matches the border throughout. */
 .crossword-cell:last-child {
   border-width: 2px 2px 2px 1px;
 }
+
 .crossword-cell:first-child {
   border-width: 2px 1px 2px 2px;
 }
@@ -76,7 +75,7 @@
   grid-template-columns: 1fr 1.3fr; /* two equal-width columns */
   gap: 20px;
   justify-items: center; /* center buttons horizontally in each grid cell */
-  align-items: start;    /* align vertically (or 'center' if you want them middle-aligned) */
+  align-items: start; /* align vertically (or 'center' if you want them middle-aligned) */
 }
 
 #submit-button {
@@ -89,12 +88,10 @@
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
-
 #submit-button:hover {
   background-color: #ddd;
   color: #173440;
 }
-
 #submit-button:active {
   transform: scale(0.98);
 }
@@ -109,23 +106,22 @@
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
-
 #reveal-button:hover {
   background-color: #ddd;
   color: #173440;
 }
-
 #reveal-button:active {
   transform: scale(0.98);
 }
 
-
 .revealed-letter {
-  background-color: #374a52;  
-  color: #bbb;              
+  background-color: #374a52;
+  color: #bbb;
   font-weight: normal;
 }
 
 .revealed-letter.active-cell {
-  background-color: #423346
+  background-color: #423346;
 }
+
+/*# sourceMappingURL=main.css.map */

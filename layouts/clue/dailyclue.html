@@ -1,11 +1,4 @@
 {{ define "main" }}
-  {{ $answerHash := hash.FNV32a .Params.answer }}
-  {{ $answerLen := len .Params.answer}}
-  {{ $clue := .Params.clue}}
-  {{ partial "clue.html" (dict
-  "answerLen" $answerLen
-  "answerHash" $answerHash
-  "clue" $clue
-)  }}
-{{ .Content }}
+  {{ partial "renderClue.html" . }}
+  {{ .Content }}
 {{ end }}
