@@ -54,15 +54,51 @@
       <br/>
       <ul class="blog-posts">
         <h2>Clue A Day project:</h2>
-        <p>I'll make a post about this project soon but here's today's clue!</p>
-        <p>Update 2025-03-28: now with the ability to reveal letters! *everyone cheers*</p>
-        <p>Update 2025-03-29: now with hints/explanations (in the dropdowns below the clue)</p>
-        <p>and checking letter/work ability :))</p>
+        <p>More about this project here: <a href="{{ "/daily-clue" | relURL }}">daily-clue</a></p>
+        <details>
+          <summary>Links for people new to cryptics</summary>
+          <p>
+            <a href="https://www.newyorker.com/puzzles-and-games-dept/cryptic-crossword/reintroducing-the-new-yorkers-cryptic-crossword" target="_blank">
+              Reintroducing The New Yorker's Cryptic Crossword
+            </a>
+            (It has a good intro to cryptic clues if you scroll / read past the preamble)
+          </p><p>
+            <a href="https://www.newyorker.com/puzzles-and-games-dept/articles/a-starter-pack-for-the-cryptic-crossword-curious" target="_blank">
+              A Starter Pack for the Cryptic Crossword Curious
+            </a> (new yorker)
+          </p>
+          </p><p>
+            Steve Mossberg's <a href="https://squarepursuit.com/category/quiptics/" target="_blank">
+              Quiptics
+            </a>
+          </p>
+          <p>
+            <span>These each have a single indicator type per puzzle:</span>
+            <br>
+            <a href="https://joeadultman.blogspot.com/2022/04/this-is-this-first-of-series-of-small.html" target="_blank">Cryptics 101: Hidden</a><br>
+            <a href="https://joeadultman.blogspot.com/2022/04/this-is-second-of-series-of-small.html" target="_blank">Cryptics 101: Anagram</a><br>
+            <a href="https://joeadultman.blogspot.com/2022/04/cryptics-101-homophone.html" target="_blank">Cryptics 101: Homophone</a><br>
+            <a href="https://joeadultman.blogspot.com/2022/04/cryptics-101-reversal.html" target="_blank">Cryptics 101: Reversal</a><br>
+            <a href="https://joeadultman.blogspot.com/2022/09/cryptics-101-container.html" target="_blank">Cryptics 101: Container</a>
+          </p>
+          (This list is largely borrowed from <a href="https://discord.com/channels/531538864721100861/780248380056010802/1317519426567929896">Juff's post</a> on the <a href="https://discord.com/invite/zHnQtGG" target="_blank"> Discord server</a>)
+        </details>
 
+        <h4>Today's clue:</h4>
+        
         {{ $latestClue := ( where .Site.RegularPages "Type" "clue" | first 1 ) }}
         {{ with index $latestClue 0 }}
-          {{ partial "renderClue.html" . }}
+          {{ if eq .Layout "dailyclue" }}
+            {{ partial "renderClue.html" . }}
+            {{ .Content }}
+          {{ else }}
+            {{ .Content }}
+          {{ end }}
+          <p>
+            <a href="{{ .RelPermalink }}">link</a> to today's puzzle page, where you can leave comments if you like :) 
+          </p>
         {{ end }}
+
 
 
         <p>Previous puzzles:</p>

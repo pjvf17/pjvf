@@ -149,7 +149,6 @@ body {
 .clue-button-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1.3fr; /* two equal-width columns */
-  gap: 20px;
   justify-items: center; /* center buttons horizontally in each grid cell */
   align-items: start; /* align vertically (or 'center' if you want them middle-aligned) */
 }
@@ -225,3 +224,10 @@ body {
   pointer-events: auto;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
+summary {
+  cursor: pointer;
+}
+
+
+

@@ -9,4 +9,11 @@ tags = ["clue-a-day", "cryptic"]
   comments = true
   answer = ""
   clue = ""
+  [params.hints]
+    "definition / wordplay separation" = ""
+    "clue-type" = ""
+    "full parse / solution" = """
+
+    """
+    "notes" = ""
 +++
