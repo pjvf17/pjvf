@@ -1,0 +1,10 @@
+{{- $input := . -}}
+{{- $content := $input -}}
+{{- $footnotes := "" -}}
+
+{{- with findRE "(?s)<div class=\"footnotes\" role=\"doc-endnotes\">.*?</div>" $content }}
+  {{- $footnotes = index . 0 -}}
+  {{- $content = replace $content $footnotes "" -}}
+{{- end -}}
+
+{{- return (dict "content" ($content | safeHTML) "footnotes" ($footnotes | safeHTML)) -}}

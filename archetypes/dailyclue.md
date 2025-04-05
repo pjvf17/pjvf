@@ -10,10 +10,9 @@ tags = ["clue-a-day", "cryptic"]
   answer = ""
   clue = ""
   [params.hints]
-    "definition / wordplay separation" = ""
-    "clue-type" = ""
-    "full parse / solution" = """
+    "definition / wordplay separation (spoiler)" = ""
+    "clue-type (spoiler)" = ""
+    "full parse / solution (spoiler)" = """
 
-    """
-    "notes" = ""
+"""
 +++

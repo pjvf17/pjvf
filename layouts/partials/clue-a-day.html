@@ -1,0 +1,57 @@
+<section class="clue-a-day">
+  {{ $cluePage := .Site.GetPage "/daily-clue" }}
+
+  {{ with .Site.GetPage "/home" }}
+  {{ with .Resources.GetMatch "clue-preamble.md" }}
+    {{ $split := partial "split-footnotes.html" .Content }}
+    {{ $ := $.Page }} {{ $.Store.Set "cluePreambleFootnotes" $split.footnotes }}
+    {{ $split.content }}
+  {{ end }}
+  {{ else }}
+  <p>Home bundle not found.</p>
+  {{ end }}
+  {{ if $cluePage }}
+  {{ $cluePage.Params.info | markdownify }}
+  <br>
+  <br>
+  <details>
+    <summary>Links for people new to cryptics</summary>
+    {{ $cluePage.Content | safeHTML }}
+  </details>
+  {{ end }}
+
+  <h4>Today's Clue:</h4>
+  {{ $latestClue := ( where .Site.RegularPages "Type" "clue" | first 1 ) }}
+  {{ with index $latestClue 0 }}
+  {{ if eq .Layout "dailyclue" }}
+  {{ partial "renderClue.html" . }}
+  {{ .Content }}
+  {{ else }}
+  {{ .Content }}
+  {{ end }}
+  <p>
+    <a href="{{ .RelPermalink }}">Link</a> to today's puzzle page.
+  </p>
+  {{ end }}
+
+  <p>Previous Puzzles:</p>
+  <ul>
+    {{ range first 10 (after 1 (where .Site.RegularPages "Type" "clue")) }}
+    <li>
+      <time datetime="{{ .Date.Format " 2006-01-02" }}">
+        {{ .Date.Format (default "02 Jan, 2006" .Site.Params.dateFormat) }}
+      </time>
+      <a href="{{ .Permalink }}" title="{{ .Params.clue }}">{{ .Title }}</a>
+    </li>
+    {{ else }}
+    <li>No posts yet</li>
+    {{ end }}
+  </ul>
+
+  {{ with .Site.GetPage "/blog/" }}
+  <p>
+    <a href="{{ "blog" | relURL }}/clue-a-day">All daily clues</a>
+  </p>
+  {{ end }}
+  {{ .Scratch.Get "cluePreambleFootnotes" }}
+</section>

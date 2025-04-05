@@ -1,0 +1,14 @@
+<section class="recent-posts">
+  <ul>
+    {{ range ( where .Site.RegularPages "Type" "blog" | first 3 ) }}
+      <li>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">
+          {{ .Date.Format (default "02 Jan, 2006" .Site.Params.dateFormat) }}
+        </time>
+        <a href="{{ .Permalink }}" title="{{ .Description }}">{{ .Title }}</a>
+      </li>
+    {{ else }}
+      <li>No posts yet</li>
+    {{ end }}
+  </ul>
+</section>
