@@ -1,23 +1,23 @@
 <section class="clue-a-day">
-  {{ $cluePage := .Site.GetPage "/daily-clue" }}
-
+  
+  {{/*  {{ $cluePage := .Site.GetPage "/home/daily-clue.md" }}  */}}
+  {{/*  {{ $cluePage }}  */}}
   {{ with .Site.GetPage "/home" }}
   {{ with .Resources.GetMatch "clue-preamble.md" }}
     {{ $split := partial "split-footnotes.html" .Content }}
     {{ $ := $.Page }} {{ $.Store.Set "cluePreambleFootnotes" $split.footnotes }}
     {{ $split.content }}
   {{ end }}
-  {{ else }}
-  <p>Home bundle not found.</p>
-  {{ end }}
-  {{ if $cluePage }}
-  {{ $cluePage.Params.info | markdownify }}
+
+  {{ with .Resources.GetMatch "new-to-cryptics.md" }}
+  {{ .Params.info | markdownify }}
   <br>
   <br>
   <details>
     <summary>Links for people new to cryptics</summary>
-    {{ $cluePage.Content | safeHTML }}
+    {{ .Content | safeHTML }}
   </details>
+  {{ end }}
   {{ end }}
 
   <h4>Today's Clue:</h4>
