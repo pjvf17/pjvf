@@ -11,12 +11,10 @@
     {{ $posts := slice }}
     {{ if .Data.Singular }}
       {{ $posts = where .Site.RegularPages "Type" "ne" "draft" }}
-      {{ $posts = where $posts "Type" "ne" "utility" }}
       {{ $posts = where $posts ".Params.tags" "intersect" (slice .Data.Term)}}
       {{ else }}
       {{ $posts = where .Site.RegularPages "Type" "ne" "draft" }}
       {{ $posts = where $posts "Type" "ne" "clue" }}
-      {{ $posts = where $posts "Type" "ne" "utility" }}
     {{ end }}
     {{ range $posts }}
     <li>
