@@ -1,4 +1,9 @@
 {{ define "main" }}
+  
   {{ partial "renderClue.html" . }}
+  
   {{ .Content }}
-{{ end }}
+  
+  {{ partial "prev-next-clue.html" . }}
+
+  {{ end }}

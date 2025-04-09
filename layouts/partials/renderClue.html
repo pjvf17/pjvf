@@ -1,20 +1,42 @@
-{{- $page := . -}}
-{{- $answerHash := hash.FNV32a $page.Params.answer -}}
-{{- $answerLen := len $page.Params.answer -}}
-{{- $clue := $page.Params.clue -}}
-{{- $base64 := encoding.Base64Encode .Params.answer -}}
-{{- partial "clue.html" (dict
-  "answerLen" $answerLen
-  "answerHash" $answerHash
-  "clue" $clue
-  "base64" $base64
-) -}}
+{{ with resources.Get "sass/clue.scss" }}
+  {{ $opts := dict
+    "enableSourceMap" (not hugo.IsProduction)
+    "outputStyle" (cond hugo.IsProduction "compressed" "expanded")
+    "targetPath" "css/clue.css"
+    "sourceMapIncludeSources" true
+    "transpiler" "dartsass"
+  }}
+  {{ with . | toCSS $opts }}
+    {{ if hugo.IsProduction }}
+      {{ with . | fingerprint }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+        {{ end }}
+        {{ else }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{ end }}
+  {{ end }}
+{{ end }}
 
-{{ range $key, $value := $page.Params.hints }}
-<details>
-  <summary>{{ $key }}</summary>
-  <div class="hint-content">
-    {{ $value | markdownify }}
-  </div>
-</details>
+{{ if .Params.answer }}
+
+  {{- $page := . -}}
+  {{- $answerHash := hash.FNV32a $page.Params.answer -}}
+  {{- $answerLen := len $page.Params.answer -}}
+  {{- $clue := $page.Params.clue -}}
+  {{- $base64 := encoding.Base64Encode .Params.answer -}}
+  {{- partial "clue.html" (dict
+    "answerLen" $answerLen
+    "answerHash" $answerHash
+    "clue" $clue
+    "base64" $base64
+  ) -}}
+
+  {{ range $key, $value := $page.Params.hints }}
+  <details>
+    <summary>{{ $key }}</summary>
+    <div class="hint-content">
+      {{ $value | markdownify }}
+    </div>
+  </details>
+  {{ end }}
 {{ end }}

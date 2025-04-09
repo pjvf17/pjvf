@@ -1,0 +1,29 @@
+
+<div class="bottom-nav">
+{{ $clues := where .Site.RegularPages "Type" "clue" }}
+{{ $sortedClues := sort $clues "Date" "dec" }}
+{{ $prevClue := index (last 1 (where $sortedClues "Date" "lt" .Date)) 0 }}
+{{ if $prevClue }}
+   {{ with $prevClue }}
+      <div>previous clue: <a href="{{ .RelPermalink }}">{{ .Title }}</a></div>
+   {{ end }}
+{{ else }}
+   <div></div>
+{{ end }}
+{{ with .Site.GetPage "/blog/" }}
+<div>
+     <a href="{{ "blog" | relURL }}/clue-a-day">all daily clues</a>
+   </div>
+{{ end }}
+{{ $sortedClues := sort $clues "Date" "asc" }}
+{{ $nextClue := index (first 1 (where $sortedClues "Date" "gt" .Date)) 0 }}
+{{ if $nextClue }}
+   {{ with $nextClue }}
+      <div>next clue: <a href="{{ .RelPermalink }}">{{ .Title }}</a></div>
+   {{ end }}
+{{ end }}
+
+{{/*  {{ range $sortedClues }}
+   {{ .Title }}
+{{end}}  */}}
+</div>
