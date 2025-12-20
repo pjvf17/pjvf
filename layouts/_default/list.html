@@ -35,10 +35,14 @@
   </ul>
   {{ if .Data.Singular }}
   {{else}}
-    <small>
+ 
+  <small>
       <div>
-        {{ range .Site.Taxonomies.tags }}
-        <a href="{{ .Page.Permalink }}">#{{ lower .Page.Title }}</a>&nbsp;
+        {{ range $tag, $pages := .Site.Taxonomies.tags }}
+          {{ $nonDraftPages := where $pages "Type" "ne" "draft" }}
+          {{ if gt (len $nonDraftPages) 0 }}
+            <a href="{{ $pages.Page.Permalink }}">#{{ lower $tag }}</a>&nbsp;
+          {{ end }}
         {{ end }}
       </div>
     </small>

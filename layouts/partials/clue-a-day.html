@@ -1,7 +1,4 @@
 <section class="clue-a-day">
-  
-  {{/*  {{ $cluePage := .Site.GetPage "/home/daily-clue.md" }}  */}}
-  {{/*  {{ $cluePage }}  */}}
   {{ with .Site.GetPage "/home" }}
   {{ with .Resources.GetMatch "clue-preamble.md" }}
     {{ $split := partial "split-footnotes.html" .Content }}
@@ -24,10 +21,10 @@
   {{ $latestClue := ( where .Site.RegularPages "Type" "clue" | first 1 ) }}
   {{ with index $latestClue 0 }}
   {{ if eq .Layout "dailyclue" }}
-  {{ partial "renderClue.html" . }}
-  {{ .Content }}
+    {{ partial "renderClue.html" . }}
+    {{ .Content }}
   {{ else }}
-  {{ .Content }}
+    {{ .Content }}
   {{ end }}
   <p>
     <a href="{{ .RelPermalink }}">Link</a> to today's puzzle page.

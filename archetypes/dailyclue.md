@@ -14,5 +14,6 @@ tags = ["clue-a-day", "cryptic"]
     "clue-type (spoiler)" = ""
     "full parse / solution (spoiler)" = """
 
+----
 """
 +++

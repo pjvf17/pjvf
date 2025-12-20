@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>don't-clear-your-mind.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p>+++
+date = '2025-04-10T22:23:23-04:00'
+draft = false
+type = &quot;draft&quot;
+title = &quot;don't clear your mind&quot;
+tags = [&quot;meditation&quot;, &quot;dhamma&quot;, &quot;practice&quot;]
++++</p>
+<p>The phrase “clear your mind,” as applied to meditation, or other forms of spiritual practice, has thoroughly percolated our collective consciousness. For the purposes of this post, I’m interpreting this phrase as “don’t have thoughts right now, stop any thoughts.” This interpretation comes from the definition of clear (verb) as “remove an obstruction or unwanted item or items from.” It also comes from phrases I often hear when people first approach meditation. The pervasiveness of this phrase is largely a negative thing.</p>
+<p>My reasons for this are twofold:</p>
+<p><a href="#1-its-hard">1.</a> It’s really hard. Or rather, it takes a lot of work to get there. Unless
+you’ve been practicing diligently for a long time (read, an hour a day
+for years, ish). It’s unlikely you have the necessary skills and faculties
+built up to even be able to have no thoughts for an extended period of
+time.</p>
+<p><a href="#2-having-no-thoughts-is-not-a-great-goal">2.</a> It’s not really that good of a goal?</p>
+<p><a href="#">2.1</a> This one has a caveat that I’ll get into later. If you’re experienced with meditation and you disagree, you’ll probably find what you’re thinking further down.</p>
+<h2 id="1-its-hard">1. It’s hard</h2>
+<p>One of the things you learn through meditation is how bad it can feel to do something in a way that fundamentally doesn’t work. The main problem I have with this phrase is effectively a fear: that new meditators will start up, have thoughts while trying not to have them, and drop it. This fear is thankfully mitigated by the presence of a rather large amount of good meditation advice, guided meditation, books, retreats, and teachers. I have, however, met a lot of people who say something along the lines of “oh I can’t meditate, I have too many thoughts” or “oh I can’t meditate, I can’t sit still.” The underlying assumptions expressed here are along the lines of “meditation is about not thinking,” or “meditation is about stillness.” Neither of these notions are wholly false, but they’re incomplete without further context. This brings me to the second point.</p>
+<h2 id="2-having-no-thoughts-is-not-a-great-goal">2. Having no thoughts is not a great goal</h2>
+<p>In his book, Sanity and Sainthood, Tucker Peck uses the metaphor of living next to a smelly, polluted pond to represent all the things about ourselves that are -kindly- messed up about you. Your conditioning, your trauma, all that stuff. All we have is a bucket with which we could empty the pond but man, that bucket really doesn’t have much volume compared to that pond (surprising, I know. I’m blowing your mind rn, aren’t I?). So we have two options for dealing with the pond: (A) we can try to empty this pond slowly, bucketful by bucketful, or (B) we can try to get used to living next to this pond.</p>
+<p>Tucker likens (A) to doing psychological work, and (B) to doing spiritual practice like meditation that tends towards equanimity. When we’re sitting[^1] in meditation, we’re training a number of skills, but one of the most important is the training of equanimity. Equanimity is a difficult quality to define, but I tend to think of it as “to not fight reality.” When we’re sitting next to this smelly pond, unable to move or empty the pond at any reasonable time scale, our options are limited. We could rail against reality, getting angry about how smelly the pond is, or how everything bad always happens to us, but that’s just throwing salt on the wound – the pond is smelly, we don’t have to add uncomfortable emotions on top of that.</p>
+<p>When an object of perception contacts our senses – sight, smell, touch, etc., the first thing that happens is that object gets assigned a “feeling tone,” (in pali, vedana) which can be unpleasant, pleasant, or neutral. Vedana is unavoidable, it always happens. The way the mind reacts to this feeling tone is more under our control, through practice. Generally we say that the untrained mind will: push something unpleasant away, attempting to get rid of the experience; try to get more of something pleasant, or keep it around; and ignore the things that are neutral, or seek out things that are more interesting / pleasant.</p>
+<p>As we’ve said, we cannot get rid of this smelly pond at any reasonable time scale, and the unpleasant feeling of that will not go away. BUT we don’t have to add on to it by trying to push it away, deny it, or get caught up in how bad it is. Equanimity is the ability or state of being able to stop at the feeling tone and not try to change the experience. This doesn’t mean that you avoid necessary steps to keep you and others healthy – if you get a serious cut you should put a band-aid on it, not sit in meditation.</p>
+<p>Training towards equanimity is vastly more important than the ability to have no thoughts. When you’re sitting in meditation with some intention – to watch the breath, feel the body, do a mantra, whatever – sometimes you’ll suddenly discover that you have been lost in thought for the past several minutes. It would be easy to go “well clearly I’m bad at this” or “I’m doing this wrong” or “this practice is stupid.” Instead, the practice is to kindly thank the part of your mind that noticed you were distracted from the task you set yourself, and gently return to the meditation. This is acknowledging the experience. Sometimes it will be the case that despite bringing as much kindness and gentleness to meditation as you can, you’ll still get frustrated, annoyed, or discouraged. Training equanimity means we treat this the same as being distracted – notice the frustration, and gently return the attention to the meditation. To not fight reality means to not fight the experience of a negative emotion.</p>
+<p>In fact, anything that arises in meditation you’re viewing as “the problem” is just another phenomena to apply this to, don’t fight reality. Be kind, be gentle, notice what’s occurring, return to your meditation object. Seek out a teacher if you’re consistently having the same problems in meditation without change over the course of several months.</p>
+<h3 id="21-the-caveat">2.1 The Caveat</h3>
+<p>With proper technique and experience, it is possible for a meditator to relax and collect[^2] their mind such that thoughts will cease or at least fade so far into the background as to seem not to exist, (we’re unsure which is the case). In this case, a mind free from thoughts can be helpful for further deepening meditation and seeing experiences with sharp clarity. However, this phenomenon is essentially a side effect rather than a practice to specifically cultivate. Regardless, this is a level of meditation I do not feel qualified to comment extensively upon. If you think you are approaching this level of practice, please seek a teacher for further advice.</p>
+<ol>
+<li>
+<p>I say sitting here but meditation can be done in any posture ↩</p>
+</li>
+<li>
+<p>I’m using “collected” here rather than “concentrated” because it’s
+common for people to view concentration as a process in which you’re trying really hard to do something and blocking everything else out. The quality we’re actually talking about here is the translation of the Pali/Sanskrit word “Samadhi.” It points to a relaxed kind of collectedness, akin to a flow state (in fact I believe it’s been posited that samadhi and other deep states and flow are the same process in different contexts, but don’t quote me on that)</p>
+</li>
+</ol>
+
+</body>
+</html>

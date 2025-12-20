@@ -17,11 +17,23 @@
 {{ end }}{{ end }}
 <content>
   {{ .Content }}
-  moment
 </content>
 <p>
   {{ range (.GetTerms "tags") }}
   <a href="{{ .Permalink }}">#{{ lower .LinkTitle }}</a>
   {{ end }}
 </p>
+{{ if .Params.spoilers }} 
+<h2 id="spoilers">spoilers</h2>
+{{ end }}
+{{ range $key, $value := .Params.spoilers }}
+<details>
+  <summary>{{ $key }}</summary>
+  <div class="hint-content">
+    {{ $value | markdownify }}
+  </div>
+</details>
+{{ end }}
+<br>
+<br>
 {{ end }}
